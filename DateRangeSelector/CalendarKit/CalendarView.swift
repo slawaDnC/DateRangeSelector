@@ -34,7 +34,7 @@ public class CalendarView: UIView {
         }
     }
 
-    public var selectedYear: Int = Date().year ?? .zero {
+    public var selectedYear: Int = Date().year {
         didSet {
             let date = Date.from(year: selectedYear, month: 1, day: 1)
             setStartAndEnd(date: date)
@@ -198,7 +198,7 @@ public class CalendarView: UIView {
 
     func registerCell() {
         MonthCollectionCell.register(for: collectionView)
-        selectedYear = Date().year ?? .zero
+        selectedYear = Date().year
     }
 
     func setupCollectionView() {
@@ -237,10 +237,10 @@ public class CalendarView: UIView {
         set.insert(CalendarLogic(date: date))
 
         (.zero..<monthRange).forEach { _ in
-            dateIter2 = dateIter2.firstDayOfPreviousMonth ?? .init()
+            dateIter2 = dateIter2.firstDayOfPreviousMonth
             set.insert(CalendarLogic(date: dateIter2))
-            if (dateIter1.firstDayOfFollowingMonth ?? .init()) < maxDate {
-                dateIter1 = dateIter1.firstDayOfFollowingMonth ?? .init()
+            if dateIter1.firstDayOfFollowingMonth < maxDate {
+                dateIter1 = dateIter1.firstDayOfFollowingMonth
                 set.insert(CalendarLogic(date: dateIter1))
             } else {
                 return
