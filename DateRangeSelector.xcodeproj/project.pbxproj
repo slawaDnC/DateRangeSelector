@@ -26,6 +26,8 @@
 		2995102325F102D200B305DE /* WeekHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2995101925F102D200B305DE /* WeekHeaderView.swift */; };
 		2995102425F102D200B305DE /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2995101A25F102D200B305DE /* CalendarView.swift */; };
 		29AA51F625F1124E003FD647 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA51F525F1124E003FD647 /* Extensions.swift */; };
+		78A43DFC289ABDA300DB5FE3 /* DateRangeSelector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29950FD725F1016900B305DE /* DateRangeSelector.framework */; };
+		78A43DFD289ABDA300DB5FE3 /* DateRangeSelector.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 29950FD725F1016900B305DE /* DateRangeSelector.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +38,28 @@
 			remoteGlobalIDString = 29950FD625F1016900B305DE;
 			remoteInfo = DateRangeSelector;
 		};
+		78A43DFE289ABDA300DB5FE3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29950FCE25F1016900B305DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29950FD625F1016900B305DE;
+			remoteInfo = DateRangeSelector;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		78A43E00289ABDA300DB5FE3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				78A43DFD289ABDA300DB5FE3 /* DateRangeSelector.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		29950FD725F1016900B305DE /* DateRangeSelector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DateRangeSelector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78A43DFC289ABDA300DB5FE3 /* DateRangeSelector.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +130,7 @@
 				29950FE425F1016A00B305DE /* DateRangeSelectorTests */,
 				29950FFA25F101DC00B305DE /* DateRangeSelectorExample */,
 				29950FD825F1016900B305DE /* Products */,
+				78A43DFB289ABDA300DB5FE3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,6 +203,13 @@
 			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
+		78A43DFB289ABDA300DB5FE3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -235,10 +267,13 @@
 				29950FF525F101DC00B305DE /* Sources */,
 				29950FF625F101DC00B305DE /* Frameworks */,
 				29950FF725F101DC00B305DE /* Resources */,
+				78A43E00289ABDA300DB5FE3 /* Embed Frameworks */,
+				78A43E01289ABE1300DB5FE3 /* SwiftLint */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				78A43DFF289ABDA300DB5FE3 /* PBXTargetDependency */,
 			);
 			name = DateRangeSelectorExample;
 			productName = DateRangeSelectorExample;
@@ -344,6 +379,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		78A43E01289ABE1300DB5FE3 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint lint --quiet\nelse\n    echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		29950FD325F1016900B305DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -390,6 +446,11 @@
 			isa = PBXTargetDependency;
 			target = 29950FD625F1016900B305DE /* DateRangeSelector */;
 			targetProxy = 29950FE225F1016A00B305DE /* PBXContainerItemProxy */;
+		};
+		78A43DFF289ABDA300DB5FE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29950FD625F1016900B305DE /* DateRangeSelector */;
+			targetProxy = 78A43DFE289ABDA300DB5FE3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

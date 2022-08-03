@@ -9,22 +9,22 @@ import UIKit
 import DateRangeSelector
 
 class ViewController: UIViewController {
-
     @IBOutlet weak var monthTextField: UITextField!
     @IBOutlet weak var saveMonthButton: UIButton!
     @IBOutlet weak var resetMonthButton: UIButton!
     @IBOutlet weak var fromValueLabel: UILabel!
     @IBOutlet weak var toValueLabel: UILabel!
     @IBOutlet weak var calendarView: CalendarView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupUI()
         setupCalendarUI()
         calendarView.delegate = self
     }
-    
-    func setupUI(){
+
+    func setupUI() {
         saveMonthButton.layer.borderWidth = 1
         saveMonthButton.layer.borderColor = UIColor.gray.cgColor
         saveMonthButton.layer.cornerRadius = 8
@@ -32,12 +32,12 @@ class ViewController: UIViewController {
         resetMonthButton.layer.borderColor = UIColor.gray.cgColor
         resetMonthButton.layer.cornerRadius = 8
     }
-    
-    func setupCalendarUI(){
+
+    func setupCalendarUI() {
         calendarView.selectedYear = 2019
         calendarView.maxDate = Date()
         calendarView.previousButtonIsEnable = true
-        calendarView.nextButtonIsEnable  = true
+        calendarView.nextButtonIsEnable = true
         calendarView.headerTitleColor = .darkGray
         calendarView.headerTitleFont = UIFont.systemFont(ofSize: 18)
         calendarView.headerBackgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
@@ -47,15 +47,14 @@ class ViewController: UIViewController {
         calendarView.nextButtonTitleColor = .darkGray
         calendarView.nextButtonTitleFont = UIFont.systemFont(ofSize: 20)
         calendarView.nextButtonAligment = .left
-        calendarView.highlightColor = UIColor(red: 11/255.0, green: 75/255.0, blue: 105/255.0, alpha: 1)
+        calendarView.highlightColor = UIColor(red: 11 / 255.0, green: 75 / 255.0, blue: 105 / 255.0, alpha: 1)
         calendarView.highlightScale = 0.8
         calendarView.todayHighlightColor = .red
         calendarView.todayTextColor = .white
         calendarView.dayTextColor = .gray
         calendarView.dayFont = UIFont.systemFont(ofSize: 16)
     }
-    
-    
+
     @IBAction func saveMonthButtonPressed(_ sender: Any) {
         guard let monthCount = monthTextField.text else {
             return
@@ -63,14 +62,15 @@ class ViewController: UIViewController {
         calendarView.monthRange = Int(monthCount) ?? 12
         monthTextField.endEditing(true)
     }
-    
+
     @IBAction func resetMonthButtonPressed(_ sender: Any) {
         calendarView.monthRange = 12
         monthTextField.text = ""
         monthTextField.endEditing(true)
     }
-    
 }
+
+// MARK: - CalendarViewDelegate
 
 extension ViewController: CalendarViewDelegate {
     func didSelectDate(startDate: Date, endDate: Date) {
@@ -80,5 +80,3 @@ extension ViewController: CalendarViewDelegate {
         toValueLabel.text = dateFormatter.string(from: endDate)
     }
 }
-
-
