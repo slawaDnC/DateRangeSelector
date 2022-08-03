@@ -23,7 +23,6 @@ let package = Package(
             name: "DateRangeSelector",
             dependencies: [],
             path: "DateRangeSelector",
-            sources: ["CalendarKit"],
-            )
+            sources: ["CalendarKit"])
     ]
 )
