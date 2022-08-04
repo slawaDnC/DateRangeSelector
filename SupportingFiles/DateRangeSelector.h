@@ -2,7 +2,7 @@
 //  DateRangeSelector.h
 //  DateRangeSelector
 //
-//  Created by Amir on 3/4/21.
+//  Created by Vyacheslav on 04.08.2022.
 //
 
 #import <Foundation/Foundation.h>
