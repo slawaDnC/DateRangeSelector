@@ -175,7 +175,7 @@ class DayCollectionCell: UICollectionViewCell {
         let frame: CGRect = .init(
             x: (width - height) / 2,
             y: .zero,
-            width: width * 0.9,
+            width: height * 0.9,
             height: height * 0.9)
         selectedView = UIView(frame: frame)
 
@@ -222,7 +222,7 @@ class DayCollectionCell: UICollectionViewCell {
 
     func addRoundHighlightView() {
         let frame: CGRect = .init(
-            x: width - height,
+            x: (width - height) / 2,
             y: .zero,
             width: height,
             height: height)
@@ -257,9 +257,9 @@ extension DayCollectionCell {
     class func register(for collectionView: UICollectionView) {
         collectionView.register(
             UINib(
-                nibName: DayCollectionCell.nameOfClass,
+                nibName: String(describing: DayCollectionCell.self),
                 bundle: CalendarViewFrameworkBundle.main
             ),
-            forCellWithReuseIdentifier: DayCollectionCell.nameOfClass)
+            forCellWithReuseIdentifier: String(describing: DayCollectionCell.self))
     }
 }

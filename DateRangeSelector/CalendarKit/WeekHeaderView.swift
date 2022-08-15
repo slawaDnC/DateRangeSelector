@@ -25,10 +25,10 @@ extension WeekHeaderView {
     class func register(for collectionView: UICollectionView) {
         collectionView.register(
             UINib(
-                nibName: WeekHeaderView.nameOfClass,
+                nibName: String(describing: WeekHeaderView.self),
                 bundle: CalendarViewFrameworkBundle.main
             ),
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: WeekHeaderView.nameOfClass)
+            withReuseIdentifier: String(describing: WeekHeaderView.self))
     }
 }

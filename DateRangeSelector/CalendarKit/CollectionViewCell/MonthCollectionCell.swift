@@ -92,7 +92,7 @@ extension MonthCollectionCell: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayCollectionCell.nameOfClass, for: indexPath) as? DayCollectionCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: DayCollectionCell.self), for: indexPath) as? DayCollectionCell
         else { preconditionFailure() }
 
         let date = dates[indexPath.item]
@@ -161,7 +161,7 @@ extension MonthCollectionCell: UICollectionViewDelegateFlowLayout {
     ) -> UICollectionReusableView {
         collectionView.dequeueReusableSupplementaryView(
             ofKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: WeekHeaderView.nameOfClass,
+            withReuseIdentifier: String(describing: WeekHeaderView.self),
             for: indexPath
         )
     }
@@ -189,9 +189,9 @@ extension MonthCollectionCell {
     class func register(for collectionView: UICollectionView) {
         collectionView.register(
             UINib(
-                nibName: MonthCollectionCell.nameOfClass,
+                nibName: String(describing: MonthCollectionCell.self),
                 bundle: CalendarViewFrameworkBundle.main
             ),
-            forCellWithReuseIdentifier: MonthCollectionCell.nameOfClass)
+            forCellWithReuseIdentifier: String(describing: MonthCollectionCell.self))
     }
 }
