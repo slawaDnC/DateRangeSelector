@@ -8,27 +8,6 @@
 import Foundation
 import UIKit
 
-extension NSObject {
-    @objc
-    static var nameOfClass: String {
-        NSStringFromClass(self).components(separatedBy: ".").last ?? ""
-    }
-}
-
-extension UITableViewCell {
-    @objc
-    static func reuseIdentifier() -> String {
-        self.nameOfClass
-    }
-}
-
-extension UICollectionViewCell {
-    @objc
-    static func reuseIdentifier() -> String {
-        self.nameOfClass
-    }
-}
-
 extension Date {
     static func from(year: Int, month: Int, day: Int) -> Date {
         let calendar = Calendar(identifier: .gregorian)

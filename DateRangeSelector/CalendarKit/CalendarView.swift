@@ -1,12 +1,67 @@
+import class Foundation.Bundle
 import UIKit
 
 public protocol CalendarViewDelegate: AnyObject {
     func didSelectDate(startDate: Date, endDate: Date)
 }
 
-public final class CalendarViewFrameworkBundle {
+public final class CalendarViewFrameworkBundle: NSObject {
+    #if SWIFT_PACKAGE
+    public static let main: Bundle = Bundle.module
+    #else
     public static let main: Bundle = Bundle(for: CalendarViewFrameworkBundle.self)
+    #endif
 }
+
+extension UIView {
+    @discardableResult
+    func fromNib<T: UIView>() -> T? {
+        guard
+            let contentView = CalendarViewFrameworkBundle.main.loadNibNamed(
+                String(describing: Self.self),
+                owner: self,
+                options: nil
+            )?.first as? T else {
+            // xib not loaded, or its top view is of the wrong type
+            return nil
+        }
+        return contentView
+    }
+}
+
+public protocol XIBLoadable {
+    func load(from xibName: String) -> Bool
+    func add(to view: UIView)
+}
+
+extension XIBLoadable where Self: UIView {
+    @discardableResult
+    public func load(from xibName: String) -> Bool {
+        guard let xibContents = Bundle.main.loadNibNamed(xibName, owner: self, options: nil),
+            let view = xibContents.first as? UIView
+            else { return false }
+
+        self.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+
+        return true
+    }
+
+    public func add(to view: UIView) {
+        view.addSubview(self)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        self.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        self.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        self.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+}
+
+extension UIView: XIBLoadable {}
 
 public class CalendarView: UIView {
     @IBOutlet var contentView: UIView!
@@ -184,7 +239,7 @@ public class CalendarView: UIView {
     }
 
     func commonInit() {
-        CalendarViewFrameworkBundle.main.loadNibNamed(CalendarView.nameOfClass, owner: self, options: nil)
+        self.fromNib()
         contentView.fixInView(self)
     }
 
@@ -331,7 +386,7 @@ extension CalendarView: UICollectionViewDataSource {
     ) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: MonthCollectionCell.nameOfClass,
+            withReuseIdentifier: String(describing: MonthCollectionCell.self),
             for: indexPath) as? MonthCollectionCell
         else { preconditionFailure() }
         cell.monthCellDelegate = self
