@@ -1,18 +1,21 @@
-Pod::Spec.new do |spec|
+Pod::Spec.new do |s|
+  # Version
+  s.version       = "1.0.1"
+  s.swift_version = "5.5"
 
-  spec.name          = "DateRangeSelector"
-  spec.version       = "0.0.3"
-  spec.summary       = "customizable calendar view as a date range selector"
+  # Meta
+  s.name         = "DateRangeSelector"
+  s.summary      = "Customizable calendar view as a date range selector"
+  s.homepage     = "https://github.com/webMiner44/DateRangeSelector"
+  s.license      = { :type => "MIT" }
+  s.author       = { "Vyacheslav Razumeenko" => "dnc.slava.razumeenko@gmail.com" }
+  s.description  = <<-DESC
+                    Customizable calendar view as a date range selector
+                   DESC
 
-  spec.homepage      = "https://github.com/boof-tech/DateRangeSelector"
-  spec.screenshots   = "https://user-images.githubusercontent.com/35375629/110629989-115ade00-81ba-11eb-85af-f6d5f026066c.png"
-
-
-  spec.swift_versions = '5.0'
-  spec.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
-  spec.license       = { :type => "MIT" }
-  spec.author        = { "Boof.tech" => "info@boof.tech" }
-  spec.platform      = :ios, "11.0"
-  spec.source        = { :git => 'https://github.com/boof-tech/DateRangeSelector.git', :tag => '0.0.3'}
-  spec.source_files  = "DateRangeSelector/**/*.{swift,xib}"
+  # Compatibility & Sources
+  s.platform     = :ios, "11.0"
+  s.source       = { :git => "https://github.com/webMiner44/DateRangeSelector.git", :tag => s.version.to_s }
+  s.screenshots  = "https://user-images.githubusercontent.com/35375629/110629989-115ade00-81ba-11eb-85af-f6d5f026066c.png"
+  s.source_files = "DateRangeSelector/**/*.{swift,xib}"
 end
